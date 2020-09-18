@@ -1,15 +1,10 @@
 <template>
-<img alt="Vue logo" src="./assets/logo.png" />
-<first />
+<div>hi</div>
+<router-view />
 </template>
 
 <script>
-import first from './components/first.vue'
-
 export default {
-    name: 'App',
-    components: {
-        first
-    }
+    name: 'App'
 }
 </script>
