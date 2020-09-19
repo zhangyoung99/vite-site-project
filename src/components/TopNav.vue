@@ -1,10 +1,11 @@
 <template>
 <div class="topnav">
-    <div class="logo" @click="toggleAside"></div>
+    <div class="logo">logo</div>
     <ul class="menu">
         <li>菜单1</li>
         <li>菜单2</li>
     </ul>
+    <span class="toggleAside" @click="toggleAside"></span>
 </div>
 </template>
 
@@ -29,23 +30,49 @@ export default {
 <style lang="scss" scoped>
 .topnav {
     display: flex;
-    align-items: center;
     background-color: pink;
     position: relative;
+    padding: 10px;
     z-index: 10;
-}
+    justify-content: center;
+    align-items: center;
 
-.logo {
-    width: 30px;
-    height: 30px;
-    background-color: red;
-}
+    .logo {
+        margin-right: auto;
+    }
 
-.menu {
-    display: flex;
+    .toggleAside {
+        width: 16px;
+        height: 16px;
+        background-color: red;
+        position: absolute;
+        left: 16px;
+        // top: 50%;
+        // transform: translate(-50%);
+        display: none;
+    }
 
-    >li {
-        margin: 0 1em;
+    .menu {
+        display: flex;
+
+        >li {
+            margin: 0 1em;
+        }
+
+    }
+
+    @media (max-width: 500px) {
+        >.menu {
+            display: none;
+        }
+
+        >.logo {
+            margin: 0 auto;
+        }
+
+        .toggleAside {
+            display: inline-block;
+        }
     }
 }
 </style>
