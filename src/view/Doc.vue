@@ -51,6 +51,7 @@ aside {
     background-color: lightblue;
     width: 150px;
     padding: 16px;
+    height: 100%;
 
     >h2 {
         margin-bottom: 4px;

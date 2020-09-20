@@ -20,3 +20,25 @@ export default {
     }
 }
 </script>
+<style lang="scss" scoped>
+    .banner {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: lightgreen;
+
+        a {
+            display: inline-block;
+            width: 80px;
+            height: 30px;
+            line-height: 30px;
+            margin-left: 10px;
+            // border: 1px solid #e5e5e5;
+            border-radius: 5px;
+            text-align: center;
+            background-color: #fff;
+        }
+
+    }
+</style>
