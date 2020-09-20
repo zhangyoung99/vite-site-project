@@ -47,11 +47,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.content {
+    display: flex;
+    > main {
+        width: calc(100% - 150px);
+        background-color: lightgreen;
+    }
+}
 aside {
     background-color: lightblue;
     width: 150px;
     padding: 16px;
-    height: 100%;
+    height: 100vh;
 
     >h2 {
         margin-bottom: 4px;
