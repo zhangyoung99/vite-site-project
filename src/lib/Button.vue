@@ -109,7 +109,7 @@ $radius: 4px;
         background: $blue;
         &:hover,
         &:focus {
-            color: darken($blue,10%);
+            color: #fff;
         }
     }
     &.my-level-success {
