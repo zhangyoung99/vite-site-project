@@ -52,6 +52,7 @@ export default {
     > main {
         width: calc(100% - 150px);
         background-color: lightgreen;
+        padding: 10px;
     }
 }
 aside {

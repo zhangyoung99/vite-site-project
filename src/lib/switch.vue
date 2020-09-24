@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button @click="toggle" :class="{checked:value}"> <span></span></button>
+        <button class="my-switch" @click="toggle" :class="{checked:value}"> <span></span></button>
     </div>
 </template>
 <script lang="ts">
@@ -18,11 +18,11 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 $h: 22px;
 $h2: $h - 4px;
 
-button {
+.my-switch{
     height: $h;
     width: $h*2;
     background-color: grey;
@@ -30,6 +30,15 @@ button {
     position: relative;
     margin-top: 10px;
     margin-left: 10px;
+    &.checked {
+        background-color: blue;
+    }
+    &.checked > span {
+        left: calc(100% - #{$h2} - 2px);
+    }
+    &:focus {
+        outline: none;
+    }
 } 
 span {
     position: absolute;
@@ -40,14 +49,5 @@ span {
     background: white;
     border-radius: $h2 / 2;
     transition: left 250ms;
-}
-button.checked {
-    background-color: blue;
-}
-button.checked > span {
-    left: calc(100% - #{$h2} - 2px);
-}
-button:focus {
-    outline: none;
 }
 </style>
