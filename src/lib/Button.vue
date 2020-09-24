@@ -1,5 +1,5 @@
 <template>
-    <button class="my-button" :class="`theme-${theme}`">
+    <button class="my-button" :class="`my-theme-${theme}`">
         <slot />
     </button>
 </template>
@@ -13,7 +13,7 @@ export default {
     }
 }
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 $h: 32px;
 $border-color: #d9d9d9;
 $color: #333;
@@ -47,6 +47,24 @@ $radius: 4px;
     }
     &::-moz-focus-inner {
         border: 0;
+    }
+    &.my-theme-link {
+        border-color: transparent;
+        color: $blue;
+        box-shadow: none;
+        &:hover, 
+        &:focus {
+            color:lighten($blue,10%);
+        }
+    }
+    &.my-theme-text {
+        border-color: transparent;
+        box-shadow: none;
+        color: inherit;
+        &:hover,
+        &:focus {
+            background: darken(white, 5%);
+        }
     }
 }
 </style>
