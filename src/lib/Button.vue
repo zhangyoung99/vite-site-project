@@ -14,14 +14,23 @@ export default {
         size: {
             type: String,
             default: 'normal'
+        },
+        level: {
+            type: String,
+            default: 'plain'
+        },
+        loading: {
+            type:Boolean,
+            default: false
         }
     },
     setup(props) {
-        const {theme,size} =  props
+        const {theme,size,level} =  props
         const classes = computed(() => {
             return {
                 [`my-theme-${theme}`]:theme,
-                [`my-size-${size}`]:size
+                [`my-size-${size}`]:size,
+                [`my-level-${level}`]:level
             }
         })
         return {classes}
@@ -33,6 +42,9 @@ $h: 32px;
 $border-color: #d9d9d9;
 $color: #333;
 $blue: #40a9ff;
+$green: #67c23a;
+$warning: #e6a23c;
+$danger: #ff4d4f;
 $radius: 4px;
 
 .my-button {
@@ -89,6 +101,25 @@ $radius: 4px;
     &.my-size-small {
         font-size: 14px;
         height:24px;
+    }
+    &.my-levele-plain {
+        background: #fff;
+    }
+    &.my-level-primary {
+        background: $blue;
+        &:hover,
+        &:focus {
+            color: darken($blue,10%);
+        }
+    }
+    &.my-level-success {
+        background: $green;
+    }
+    &.my-level-warning {
+        background: $warning;
+    }
+    &.my-level-danger {
+        background: $danger;
     }
 }
 </style>
