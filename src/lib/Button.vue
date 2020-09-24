@@ -1,15 +1,30 @@
 <template>
-    <button class="my-button" :class="`my-theme-${theme}`">
+    <button class="my-button" :class="classes">
         <slot />
     </button>
 </template>
 <script>
+import { computed} from 'vue'
 export default {
     props: {
         theme: {
             type: String,
             default: 'button'
+        },
+        size: {
+            type: String,
+            default: 'normal'
         }
+    },
+    setup(props) {
+        const {theme,size} =  props
+        const classes = computed(() => {
+            return {
+                [`my-theme-${theme}`]:theme,
+                [`my-size-${size}`]:size
+            }
+        })
+        return {classes}
     }
 }
 </script>
@@ -65,6 +80,15 @@ $radius: 4px;
         &:focus {
             background: darken(white, 5%);
         }
+    }
+    &.my-size-big {
+        font-size: 24px;
+        height:48px;
+        margin-bottom: 10px;
+    }
+    &.my-size-small {
+        font-size: 14px;
+        height:24px;
     }
 }
 </style>

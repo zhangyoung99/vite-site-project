@@ -8,6 +8,21 @@
         <Button theme="text">你好</Button>
     </div>
     <h2>示例二</h2>
+        <div>
+            <Button size="big">大大大</Button>
+            <Button size="normal">普通</Button>
+            <Button size="small">小小小</Button>
+        </div>
+        <div>
+            <Button size="big" theme="link">大大大</Button>
+            <Button size="normal" theme="link">普通</Button>
+            <Button size="small" theme="link">小小小</Button>
+        </div>
+        <div>
+            <Button size="big" theme="text">大大大</Button>
+            <Button size="normal" theme="text">普通</Button>
+            <Button size="small" theme="text">小小小</Button>
+        </div>
 </template>
 <script lang="ts">
 import Button from '../lib/Button.vue'
