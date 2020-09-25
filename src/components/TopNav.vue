@@ -33,7 +33,7 @@ export default {
     background-color: pink;
     position: relative;
     padding: 10px;
-    z-index: 10;
+    z-index: 5;
     justify-content: center;
     align-items: center;
 

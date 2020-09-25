@@ -1,6 +1,6 @@
 <template>
     <template v-if="visible">
-        <div class="my-dialog-overlay"></div>
+        <div class="my-dialog-overlay" @click="onClickOverlay"></div>
         <div class="my-dialog-wrapper">
             <div class="my-dialog">
                 <header>
@@ -35,11 +35,20 @@ export default {
         },
         cancel: {
             type: Function
+        },
+        closeOverlay: {
+            type:Boolean,
+            default: false
         }
     },
     setup(props, context) {
         const close = () => {
             context.emit('update:visible',false)
+        }
+        const onClickOverlay = () => {
+            if(props.closeOverlay) {
+                close()
+            }
         }
         const confirm = () => {
             // props.confirm && props.confirm() !== false
@@ -51,7 +60,7 @@ export default {
             context.emit('cancel')
             close()
         }
-        return {close,confirm,cancel}
+        return {close,onClickOverlay, confirm,cancel}
     }
 }
 </script>
@@ -59,10 +68,12 @@ export default {
 $radius: 4px;
 $border-color: #d9d9d9;
 .my-dialog-overlay {
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    background-color: #e5e5e5;
+    background-color: rgba(0, 0, 0, 0.3);
     z-index: 9;
 }
 .my-dialog-wrapper {

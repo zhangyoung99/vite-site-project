@@ -3,7 +3,7 @@
         <div>dialog 示例</div>
         <h2>示例一</h2>
         <Button @click="toggle">toggle</Button>
-        <Dialog v-model:visible="visible" :confirm="fn1" :cancel="fn2" >
+        <Dialog v-model:visible="visible" :closeOverlay="false" :confirm="fn1" :cancel="fn2" >
             <template v-slot:title>
                 <strong>加粗的标题</strong>
             </template>
@@ -26,11 +26,9 @@ export default {
             visible.value = !visible.value
         }
         const fn1 = () => {
-            console.log('fn1')
             return false
         }
         const fn2 = () => {
-            console.log('fn2')
         }
         return {visible,toggle,fn1,fn2}
     }
