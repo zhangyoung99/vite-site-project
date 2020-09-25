@@ -12,8 +12,8 @@
                 </main>
                 <hr>
                 <footer class="dialog-footer">
-                    <Button level="primary">OK</Button>
-                    <Button>Cancel</Button>
+                    <Button level="primary" @click="confirm">OK</Button>
+                    <Button @click="cancel">Cancel</Button>
                 </footer>
             </div>
         </div>
@@ -29,13 +29,29 @@ export default {
         visible: {
             type: Boolean,
             default: false
+        },
+        confirm: {
+            type: Function
+        },
+        cancel: {
+            type: Function
         }
     },
     setup(props, context) {
         const close = () => {
             context.emit('update:visible',false)
         }
-        return {close}
+        const confirm = () => {
+            // props.confirm && props.confirm() !== false
+            if(props.confirm?.() !== false)   {
+                close()
+            }
+        }
+        const cancel = () => {
+            context.emit('cancel')
+            close()
+        }
+        return {close,confirm,cancel}
     }
 }
 </script>
