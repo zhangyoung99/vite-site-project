@@ -1,22 +1,86 @@
 <template>
-    <div class="dialog-overlay"></div>
-    <div class="dialog-body">
-        <header>标题</header>
-        <main>
-            <div>内容一</div>
-            <div>内容二</div>
-        </main>
-        <footer>
-            <Button level="primary">OK</Button>
-            <Button>Cancel</Button>
-        </footer>
-    </div>
+    <template v-if="visible">
+        <div class="my-dialog-overlay"></div>
+        <div class="my-dialog-wrapper">
+            <div class="my-dialog">
+                <header>{{title}} <i @click="close" class="close">X</i></header>
+                <hr>
+                <main>
+                    <slot />
+                </main>
+                <hr>
+                <footer class="dialog-footer">
+                    <Button level="primary">OK</Button>
+                    <Button>Cancel</Button>
+                </footer>
+            </div>
+        </div>
+    </template>
 </template>
 <script lang="ts">
 import Button from './Button.vue'
 export default {
     components: {
         Button
+    },
+    props: {
+        title: {
+            type: String,
+            default: '提示'
+        },
+        visible: {
+            type: Boolean,
+            default: false
+        }
+    },
+    setup(props, context) {
+        const close = () => {
+            context.emit('update:visible',false)
+        }
+        return {close}
     }
 }
 </script>
+<style lang="scss">
+$radius: 4px;
+$border-color: #d9d9d9;
+.my-dialog-overlay {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: #e5e5e5;
+    z-index: 9;
+}
+.my-dialog-wrapper {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 99;
+
+}
+.my-dialog {
+    background: white;
+    border-radius: $radius;
+    min-width: 15em;
+    width: 400px;
+    position: relative;
+    padding: 10px;
+    > header {
+        width: 90%;
+    }
+    .close {
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        position: absolute;
+        right: 15px;
+        cursor: pointer;
+    }
+    .dialog-footer {
+        display: flex;
+        justify-content: flex-end;
+    }
+}
+
+</style>
