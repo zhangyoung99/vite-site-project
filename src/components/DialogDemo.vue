@@ -4,8 +4,13 @@
         <h2>示例一</h2>
         <Button @click="toggle">toggle</Button>
         <Dialog v-model:visible="visible">
-          <div>内容1</div>
-          <div>内容2</div>
+            <template v-slot:title>
+                <strong>加粗的标题</strong>
+            </template>
+            <template v-slot:content>
+                <strong>内容1</strong>
+                <div>内容2</div>                
+            </template>
         </Dialog>
     </div>
 </template>

@@ -3,10 +3,12 @@
         <div class="my-dialog-overlay"></div>
         <div class="my-dialog-wrapper">
             <div class="my-dialog">
-                <header>{{title}} <i @click="close" class="close">X</i></header>
+                <header>
+                    <slot name="title"/>
+                    <i @click="close" class="close">X</i></header>
                 <hr>
                 <main>
-                    <slot />
+                    <slot name="content"/>
                 </main>
                 <hr>
                 <footer class="dialog-footer">
@@ -24,10 +26,6 @@ export default {
         Button
     },
     props: {
-        title: {
-            type: String,
-            default: '提示'
-        },
         visible: {
             type: Boolean,
             default: false
