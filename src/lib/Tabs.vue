@@ -1,55 +1,73 @@
 <template>
-    <div class="my-tabs">
-        <div class="my-tabs-nav">
-            <div class="my-tabs-nav-item" v-for="(t,index) in titles" :key="index" :class="{selected: t === selected}">{{t}}</div>            
-        </div>
-        <div class="my-tabs-content">
-            <component class="my-tabs-content-item" v-for="(c,index) in defaults" :is="c" :key="index"></component>            
-        </div>
-
+  <div class="my-tabs">
+    <div class="my-tabs-nav">
+      <div
+        class="my-tabs-nav-item"
+        v-for="(t, index) in titles"
+        @click="select(t)"
+        :key="index"
+        :class="{ selected: t === selected }"
+      >
+        {{ t }}
+      </div>
+      <div class="my-tabs-indicator"></div>      
     </div>
+    <div class="my-tabs-content">
+      <component class="my-tabs-content-item" :is="current" :key="current.props.title"></component>
+    </div>
+  </div>
 </template>
 <script lang="ts">
-import Tab from './Tab.vue'
+import { computed } from "vue";
+import Tab from "./Tab.vue";
 export default {
-    props: {
-        selected: {
-            type: String
-        }
+  props: {
+    selected: {
+      type: String,
     },
-    setup(props,context) {
-        const defaults = context.slots.default()
-        defaults.forEach(el => {
-            if(el.type !== Tab) {
-                throw new Error(' Tabs 子标签不是 tab ')
-            }
-        });
+  },
+  setup(props, context) {
+    const defaults = context.slots.default();
+    defaults.forEach((el) => {
+      if (el.type !== Tab) {
+        throw new Error(" Tabs 子标签不是 tab ");
+      }
+    });
 
-        const titles = defaults.map((el) => {
-           return el.props.title
-        })
-        return {defaults, titles}
-    }
-}
+    const current = computed(() => {
+      return defaults.filter((tag) => {
+        return tag.props.title === props.selected;
+      })[0];
+    });
+
+    const select = (title: string) => {
+      context.emit("update:selected", title);
+    };
+
+    const titles = defaults.map((el) => {
+      return el.props.title;
+    });
+    return { defaults, titles, current, select };
+  },
+};
 </script>
 <style lang="scss">
 $blue: #40a9ff;
 .my-tabs {
-    background-color: #fff;
-    padding: 10px;
+  background-color: #fff;
+  padding: 10px;
 }
 .my-tabs-nav {
-    display: flex;
-    border-bottom: 1px solid #999;
-    .my-tabs-nav-item{
-        margin-right: 20px;
-
-    }
+  display: flex;
+  border-bottom: 1px solid #999;
+  .my-tabs-nav-item {
+    margin-right: 20px;
+  }
 }
 .my-tabs-content-item {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 .selected {
-    color: $blue;
+  color: $blue;
 }
 </style>
