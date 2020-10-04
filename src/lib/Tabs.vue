@@ -1,6 +1,6 @@
 <template>
   <div class="my-tabs">
-    <div class="my-tabs-nav">
+    <div class="my-tabs-nav" ref="container">
       <div
         class="my-tabs-nav-item"
         v-for="(t, index) in titles"
@@ -19,7 +19,7 @@
   </div>
 </template>
 <script lang="ts">
-import { computed, onMounted, ref } from "vue";
+import { computed, onMounted, onUpdated, ref } from "vue";
 import Tab from "./Tab.vue";
 export default {
   props: {
@@ -29,15 +29,22 @@ export default {
   },
   setup(props, context) {
     const navItems = ref<HTMLDivElement[]>([]);
-    const indicator = ref<HTMLDivElement>(null)
-    onMounted( () => {
+    const indicator = ref<HTMLDivElement>(null);
+    const container = ref<HTMLDivElement>(null)
+    const getLeft = () =>{
         const divs = navItems.value;
         const result = divs.filter(div => 
             div.classList.contains('selected'))[0]
         console.log(result)
         const {width} = result.getBoundingClientRect()
         indicator.value.style.width = width + 'px'
-    })   
+        const {left:left1} =  container.value.getBoundingClientRect()
+        const {left:left2} = result.getBoundingClientRect();
+        const left = left2 - left1;
+        indicator.value.style.left = left + 'px'
+    }
+    onMounted(getLeft) 
+    onUpdated(getLeft) 
 
     const defaults = context.slots.default();
     defaults.forEach((el) => {
@@ -59,7 +66,7 @@ export default {
     const titles = defaults.map((el) => {
       return el.props.title;
     });
-    return { defaults, titles, current, select, navItems,indicator };
+    return { defaults, titles, current, select, navItems, indicator, container };
   },
 };
 </script>
@@ -84,6 +91,7 @@ $blue: #40a9ff;
         left: 0;
         bottom: -1px;
         width: 100px;
+        transition: all 250ms;
     }
 }
 .my-tabs-content-item {
