@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button class="my-switch" @click="toggle" :class="{checked:value}"> <span></span></button>
+        <button class="my-switch" @click="toggle" :class="{checked:value}"><span></span></button>
     </div>
 </template>
 <script lang="ts">
@@ -28,10 +28,8 @@ $h2: $h - 4px;
     background-color: grey;
     border-radius: $h/2;
     position: relative;
-    margin-top: 10px;
-    margin-left: 10px;
     &.checked {
-        background-color: blue;
+        background-color: #1890ff;
     }
     &.checked > span {
         left: calc(100% - #{$h2} - 2px);
@@ -42,7 +40,7 @@ $h2: $h - 4px;
 } 
 span {
     position: absolute;
-    top: 2px;
+    top: 0;
     left: 2px;
     height: $h2;
     width: $h2;

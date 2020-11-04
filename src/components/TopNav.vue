@@ -30,7 +30,6 @@ export default {
 <style lang="scss" scoped>
 .topnav {
     display: flex;
-    background-color: pink;
     position: relative;
     padding: 10px;
     z-index: 5;
@@ -47,8 +46,8 @@ export default {
         background-color: red;
         position: absolute;
         left: 16px;
-        // top: 50%;
-        // transform: translate(-50%);
+        top: 50%;
+        transform: translateY(-50%);
         display: none;
     }
 
