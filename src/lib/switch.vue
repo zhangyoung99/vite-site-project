@@ -24,7 +24,8 @@ $h2: $h - 4px;
 
 .my-switch{
     height: $h;
-    width: $h*2;
+    width: $h * 2;
+    border:none;
     background-color: grey;
     border-radius: $h/2;
     position: relative;
@@ -40,7 +41,7 @@ $h2: $h - 4px;
 } 
 span {
     position: absolute;
-    top: 0;
+    top: 2px;
     left: 2px;
     height: $h2;
     width: $h2;
