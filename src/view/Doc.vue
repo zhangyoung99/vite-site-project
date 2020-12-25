@@ -77,8 +77,16 @@ aside {
         margin-bottom: 4px;
     }
 
-    >ol>li {
-        padding: 4px;
+    >ol>li{
+        // padding: 4px;
+         > a {
+            display: block;
+            padding: 4px 16px;
+         }
+        .router-link-active {
+            text-decoration: none;
+            background-color: white;
+        }
     }
 
     @media (max-width: 500px) {
